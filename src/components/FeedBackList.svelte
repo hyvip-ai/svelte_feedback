@@ -1,11 +1,13 @@
 <script>
-import FeedBackItem from "./FeedBackItem.svelte";
-
-
-    export let feedBacks=[]
+  import FeedBackItem from "./FeedBackItem.svelte";
+  import { fade, scale } from "svelte/transition";
+  export let feedBacks = [];
 </script>
+
 <main>
-    {#each feedBacks as feedBack (feedBack.id)}
-    <FeedBackItem feedBack={feedBack} on:delete-feedback/>
-    {/each}
+  {#each feedBacks as feedBack (feedBack.id)}
+    <div in:scale out:fade>
+      <FeedBackItem {feedBack} on:delete-feedback />
+    </div>
+  {/each}
 </main>

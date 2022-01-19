@@ -34,7 +34,7 @@
     : 0;
   function addToArray(e) {
     let newItem = { ...e.detail, id: feedBacks.length + 1 };
-    feedBacks = [newItem,...feedBacks];
+    feedBacks = [newItem, ...feedBacks];
   }
 </script>
 

@@ -4,7 +4,7 @@
 </script>
 
 <div class="feedback-stats">
-  <h4> {numerofFeedbacks} Reviews</h4>
+  <h4>{numerofFeedbacks} Reviews</h4>
   <h4>Ratings Average : {average}</h4>
 </div>
 

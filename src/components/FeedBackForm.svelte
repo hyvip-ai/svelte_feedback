@@ -3,7 +3,7 @@
   import Card from "./Card.svelte";
   import RatingSelect from "./RatingSelect.svelte";
   import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher();
   let btn_disabled = true;
   let message = "";
   let min = 10;
@@ -21,12 +21,11 @@
   }
   function addRating(e) {
     rating = Number(e.detail);
-   
   }
   function addFeddback() {
-    let text = document.getElementById("feedback").value
-    document.getElementById("feedback").value = ''
-    dispatch("add-array",{rating,text})
+    let text = document.getElementById("feedback").value;
+    document.getElementById("feedback").value = "";
+    dispatch("add-array", { rating, text });
   }
 </script>
 

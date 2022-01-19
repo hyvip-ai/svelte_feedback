@@ -1,29 +1,34 @@
 <script>
-import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from "svelte";
 
-import Card from "./Card.svelte";
+  import Card from "./Card.svelte";
 
-
-    export let feedBack= {id:0,rating:0,text:""}
-    const dispatch = createEventDispatcher()
-    const handleDelete = (itemId)=>{
-        dispatch("delete-feedback",itemId)
-    }
+  export let feedBack = { id: 0, rating: 0, text: "" };
+  const dispatch = createEventDispatcher();
+  const handleDelete = (itemId) => {
+    dispatch("delete-feedback", itemId);
+  };
 </script>
 
 <Card>
-    <div class="num-display">
-        {feedBack.rating}
-    </div>
-    <button on:click={()=>{handleDelete(feedBack.id)}} class="close">
-        X
-    </button>
-    <p class="text-display">
-        {feedBack.text}
-    </p>
+  <div class="num-display">
+    {feedBack.rating}
+  </div>
+  <button
+    on:click={() => {
+      handleDelete(feedBack.id);
+    }}
+    class="close"
+  >
+    X
+  </button>
+  <p class="text-display">
+    {feedBack.text}
+  </p>
 </Card>
+
 <style>
-    .num-display {
+  .num-display {
     position: absolute;
     top: -10px;
     left: -10px;

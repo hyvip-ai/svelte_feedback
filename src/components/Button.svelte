@@ -4,8 +4,8 @@
   export let style = "primary";
   export let type = "button";
   export let disabled = "true";
-  function clickHandler(e){
-    dispatch('add-feedback')
+  function clickHandler(e) {
+    dispatch("add-feedback");
   }
 </script>
 
