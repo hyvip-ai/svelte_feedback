@@ -2,8 +2,11 @@
   import Button from "./Button.svelte";
   import Card from "./Card.svelte";
   import RatingSelect from "./RatingSelect.svelte";
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
+  import { FeedbackStore } from "../store";
+  let feedBacks = [];
+  FeedbackStore.subscribe((data) => {
+    feedBacks = [...data];
+  });
   let btn_disabled = true;
   let message = "";
   let min = 10;
@@ -20,12 +23,16 @@
     }
   }
   function addRating(e) {
-    rating = Number(e.detail);
+    rating = Number(e);
   }
   function addFeddback() {
     let text = document.getElementById("feedback").value;
     document.getElementById("feedback").value = "";
-    dispatch("add-array", { rating, text });
+    let newFeedBack = { id:feedBacks.length+1, rating, text }
+    FeedbackStore.update((prev)=>{
+      return [newFeedBack,...prev];
+    })
+    rating = 10
   }
 </script>
 
@@ -34,7 +41,7 @@
     <h2>How would you rate your service with us?</h2>
   </header>
   <form on:submit|preventDefault>
-    <RatingSelect on:rating-select={addRating} />
+    <RatingSelect {rating} {addRating} on:rating-select={addRating} />
     <div class="input-group">
       <input
         id="feedback"
