@@ -1,14 +1,10 @@
 <script>
   import { FeedbackStore } from "../store";
   import Card from "./Card.svelte";
-  let feedBacks = [];
-  FeedbackStore.subscribe((data) => {
-    feedBacks = [...data];
-  });
   export let feedBack = { id: 0, rating: 0, text: "" };
   const handleDelete = (itemId) => {
-    const newFeedBacks = feedBacks.filter((item) => item.id !== itemId);
-    FeedbackStore.update((prev) => {
+    const newFeedBacks = $FeedbackStore.filter((item) => item.id !== itemId);
+    FeedbackStore.update(() => {
       return [...newFeedBacks];
     });
   };

@@ -3,10 +3,6 @@
   import Card from "./Card.svelte";
   import RatingSelect from "./RatingSelect.svelte";
   import { FeedbackStore } from "../store";
-  let feedBacks = [];
-  FeedbackStore.subscribe((data) => {
-    feedBacks = [...data];
-  });
   let btn_disabled = true;
   let message = "";
   let min = 10;
@@ -28,11 +24,11 @@
   function addFeddback() {
     let text = document.getElementById("feedback").value;
     document.getElementById("feedback").value = "";
-    let newFeedBack = { id:feedBacks.length+1, rating, text }
-    FeedbackStore.update((prev)=>{
-      return [newFeedBack,...prev];
-    })
-    rating = 10
+    let newFeedBack = { id: $FeedbackStore.length + 1, rating, text };
+    FeedbackStore.update((prev) => {
+      return [newFeedBack, ...prev];
+    });
+    rating = 10;
   }
 </script>
 

@@ -1,13 +1,9 @@
 <script>
   import { FeedbackStore } from "../store";
-  let feedBacks = [];
-  FeedbackStore.subscribe((data) => {
-    feedBacks = [...data];
-  });
-  $: average = feedBacks.length?feedBacks.reduce((acc, item) => {
+  $: average = $FeedbackStore.length?Math.floor(($FeedbackStore.reduce((acc, item) => {
       return (acc += item.rating);
-    }, 0) / feedBacks.length:0
-  $: numerofFeedbacks = feedBacks.length;
+    }, 0) / $FeedbackStore.length)*10)/10:0
+  $: numerofFeedbacks = $FeedbackStore.length;
 </script>
 
 <div class="feedback-stats">
